@@ -1,0 +1,5 @@
+rotors_simulator/rotors_description
+/home/ecn/drone_fleet_ws/devel/.private/rotors_description/cmake.lock /home/ecn/drone_fleet_ws/devel/./cmake.lock
+/home/ecn/drone_fleet_ws/devel/.private/rotors_description/share/rotors_description/cmake/rotors_descriptionConfig.cmake /home/ecn/drone_fleet_ws/devel/share/rotors_description/cmake/rotors_descriptionConfig.cmake
+/home/ecn/drone_fleet_ws/devel/.private/rotors_description/share/rotors_description/cmake/rotors_descriptionConfig-version.cmake /home/ecn/drone_fleet_ws/devel/share/rotors_description/cmake/rotors_descriptionConfig-version.cmake
+/home/ecn/drone_fleet_ws/devel/.private/rotors_description/lib/pkgconfig/rotors_description.pc /home/ecn/drone_fleet_ws/devel/lib/pkgconfig/rotors_description.pc
