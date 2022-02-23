@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/offboard_node.dir/offboard_node.cpp.o  -o offboard_node 

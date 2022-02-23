@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(project_pkg)
 
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_STANDARD 17)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -11,8 +9,15 @@ find_package(catkin REQUIRED COMPONENTS
   mavros_msgs
 )
 
-find_package(catkin REQUIRED)
+catkin_package(
+    CATKIN_DEPENDS roscpp roslib geometry_msgs mavros_msgs
+    )
 
-add_executable(main src/main.cpp)
+include_directories(
+  include ${catkin_INCLUDE_DIRS}
+)
+
+add_executable(offboard_node src/offboard_node.cpp)
+target_link_libraries(offboard_node ${catkin_LIBRARIES})
 
 
