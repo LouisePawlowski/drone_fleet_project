@@ -3,6 +3,7 @@
 #include <mavros_msgs/CommandBool.h>
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
+#include <gazebo_msgs/ModelState.h>
 
 mavros_msgs::State current_state;
 std::string uav_number="uav0";
@@ -26,6 +27,12 @@ int main(int argc, char **argv)
             (uav_number+"/mavros/cmd/arming");
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>
             (uav_number+"/mavros/set_mode");
+            
+    // Use of gazebo
+    ros::Publisher gazebo_set_model = nh.advertise<gazebo_msgs::ModelState>
+            ("gazebo/set_model_states", 10);
+    ros::Publisher gazebo_set_link = nh.advertise<gazebo_msgs::ModelState>
+            ("gazebo/set_link_states", 10);
 
     //the setpoint publishing rate MUST be faster than 2Hz
     ros::Rate rate(20.0);
@@ -41,9 +48,19 @@ int main(int argc, char **argv)
     pose.pose.position.y = 0;
     pose.pose.position.z = 2;
 
+    gazebo_msgs::ModelState modelstate;
+    modelstate.pose = pose;
+
+    // il faut encore trouver comment remplir le twist
+    // je ne sais pas si les publishers gazebo_set_link et gazebo_set_model publient des ModelState différents ou pas
+
+
     //send a few setpoints before starting
     for(int i = 100; ros::ok() && i > 0; --i){
         local_pos_pub.publish(pose);
+
+        gazebo_set_model.publish(modelstate);
+        gazebo_set_link.publish(modelstate);
         ros::spinOnce();
         rate.sleep();
     }
@@ -76,6 +93,8 @@ int main(int argc, char **argv)
         }
 
         local_pos_pub.publish(pose);
+        gazebo_set_model.publish(modelstate);
+        gazebo_set_link.publish(modelstate);
 
         ros::spinOnce();
         rate.sleep();
