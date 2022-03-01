@@ -3,6 +3,7 @@
 #include <mavros_msgs/CommandBool.h>
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
+#include <gazebo_msgs/ModelState.h>
 
 mavros_msgs::State current_state;
 std::string uav_number="uav0";
